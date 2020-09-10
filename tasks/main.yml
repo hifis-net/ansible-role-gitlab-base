@@ -76,10 +76,6 @@
     state: present
     update_cache: yes
   register: gitlab_install_output
-
-# Set flag whether GitLab has been freshly installed or upgraded which triggers further upgrade steps later on.
-- name: Determine whether GitLab has been freshly installed or upgraded.
-  set_fact:
-    gitlab_is_upgraded: "{{ gitlab_install_output.changed }}"
+  notify: GitLab has been installed or upgraded
 
 ...
