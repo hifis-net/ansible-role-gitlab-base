@@ -69,6 +69,18 @@
         sslcacert: /etc/pki/tls/certs/ca-bundle.crt
         metadata_expire: '300'
 
+- name: Wait until all previous background migrations are processed.
+  become: yes
+  command:
+    cmd: gitlab-rails runner -e production 'puts Gitlab::BackgroundMigration.remaining'
+  register: remaining
+  until: remaining.stdout == "0"
+  retries: 10
+  delay: 10
+  check_mode: no
+  changed_when: remaining.rc != 0
+  when: gitlab_is_primary is defined and gitlab_is_primary
+
 - name: Install or upgrade GitLab.
   become: yes
   package:
