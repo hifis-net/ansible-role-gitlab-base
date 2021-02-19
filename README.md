@@ -7,6 +7,12 @@ SPDX-License-Identifier: Apache-2.0
 
 # GitLab Base Role
 
+**Attention: This role has been migrated to our GitLab role:**
+- https://gitlab.com/hifis/ansible/gitlab-role
+- https://galaxy.ansible.com/hifis/gitlab
+
+Please open any issues and merge requests there!
+
 This Ansible Role provides a basic setup for services based on GitLab Omnibus.
 
 Currently [supported platforms](meta/main.yml) are:
